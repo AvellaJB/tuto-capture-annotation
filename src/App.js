@@ -10,9 +10,15 @@ import GlobalStyle from "./components/GlobalStyle";
 import Nav from "./components/Nav";
 
 //Import Router
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
+
+//Animation
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  //Frame motion a besoin d'une cle pour fonctionner, on importe donc useLocation qui contient une clef par page.
+  const location = useLocation();
+
   return (
     <div className="App">
       {/* Ici on importe notre composant Global Stlyle qui viens appliquer le style global à la page.*/}
@@ -25,22 +31,30 @@ function App() {
       c'est pratique parce que Route va chercher une approximation de notre lien. 
       Après avoir ajouté le exact, quand on va sur http://localhost:3000/work, j'ai que work qui est render
       */}
-      <Switch>
-        <Route path="/" exact>
-          <AboutUs />
-        </Route>
-        <Route path="/work" exact>
-          {/* Ici on wrap notre OurWork dans un Route
+      {/*On ajoute animate presence qui wrap notre switch pour utiliser l'exit dans framer et qu'on puisse
+      donner à framer la position dans laquelle on est pour savoir quand appliquer l'exit anim
+      exitBeforeEnter permet d'appliquer d'attendre que l'anim exit soit fini pour passer à l'anim de la page suivante
+      sinon les deux startent en même temps. */}
+      <AnimatePresence exitBeforeEnter>
+        {/*On ajoute dans le switch la location et la clef pour framer
+         */}
+        <Switch location={location} key={location.pathname}>
+          <Route path="/" exact>
+            <AboutUs />
+          </Route>
+          <Route path="/work" exact>
+            {/* Ici on wrap notre OurWork dans un Route
       path indique quand est-ce qu'on veux render Ourwork, ici quand le lien est http://localhost:3000/work */}
-          <OurWork />
-        </Route>
-        <Route>
-          <MovieDetail path="/work/:id" />
-        </Route>
-        <Route path="/contact">
-          <ContactUs />
-        </Route>
-      </Switch>
+            <OurWork />
+          </Route>
+          <Route>
+            <MovieDetail path="/work/:id" />
+          </Route>
+          <Route path="/contact">
+            <ContactUs />
+          </Route>
+        </Switch>
+      </AnimatePresence>
     </div>
   );
 }
