@@ -7,7 +7,7 @@ export const pageAnimation = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1,
+      duration: 0.5,
       //L'animation de page arrive en premier avant les child
       when: "beforeChildren",
       //On applique aux enfant un délais de 0,25 entre chaque, du coup les mots arrivent 1 par 1.
@@ -16,7 +16,6 @@ export const pageAnimation = {
   },
   exit: {
     opacity: 0,
-    y: 300,
     transition: {
       duration: 0.5,
     },
@@ -47,4 +46,23 @@ export const photoAnim = {
       duration: 0.75,
     },
   },
+};
+
+export const lineAnim = {
+  hidden: { width: "0%" },
+  show: { width: "100%", transition: { duration: 0.8 } },
+};
+
+export const slider = {
+  hidden: { x: "-130%", skew: "45deg" },
+  show: {
+    x: "100%",
+    skew: "0deg",
+    transition: { ease: "easeOut", duration: 1 },
+  },
+};
+
+export const sliderContainer = {
+  hidden: { opacity: 1 },
+  show: { opactity: 1, transition: { staggerChildren: 0.15, ease: "easeOut" } },
 };
