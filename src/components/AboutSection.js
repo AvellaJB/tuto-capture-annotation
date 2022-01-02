@@ -5,6 +5,7 @@ import { About, Description, Image, Hide } from "../styles";
 
 //Framer Motion
 import { motion } from "framer-motion";
+import { titleAnim, fade, photoAnim } from "../animation";
 
 const AboutSection = () => {
   /*
@@ -35,25 +36,25 @@ const AboutSection = () => {
             {/* Pour utiliser Framer Motion on doit remplacer nos tags et plutot que de tout écrire dans le code directement
             on va plutot les stored dans une variable aussi appelée variants
             On fait donc appel au variable (nom variable animation) et puis on donne notre état initial et notre anim*/}
-            <motion.h2>We work to make</motion.h2>
+            <motion.h2 variants={titleAnim}>We work to make</motion.h2>
           </Hide>
           <Hide>
-            <motion.h2>
+            <motion.h2 variants={titleAnim}>
               your <span>dreams</span> come
             </motion.h2>
           </Hide>
           <Hide>
-            <motion.h2>true</motion.h2>
+            <motion.h2 variants={titleAnim}>true</motion.h2>
           </Hide>
         </motion.div>
-        <p>
+        <motion.p variants={fade}>
           Contact us for any Photography or Videography ideas that you have. We
           have professionals with amazing skills.
-        </p>
-        <button>Contact Us</button>
+        </motion.p>
+        <motion.button variants={fade}>Contact Us</motion.button>
       </Description>
       <Image>
-        <img src={home1} alt="guy with a camera" />
+        <motion.img variants={photoAnim} src={home1} alt="guy with a camera" />
       </Image>
     </About>
   );
