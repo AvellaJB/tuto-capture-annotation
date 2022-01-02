@@ -4,7 +4,7 @@ import React from "react";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import OurWork from "./pages/OurWork";
-
+import MovieDetail from "./pages/MovieDetail";
 //Import du style général
 import GlobalStyle from "./components/GlobalStyle";
 import Nav from "./components/Nav";
@@ -29,10 +29,13 @@ function App() {
         <Route path="/" exact>
           <AboutUs />
         </Route>
-        <Route path="/work">
+        <Route path="/work" exact>
           {/* Ici on wrap notre OurWork dans un Route
       path indique quand est-ce qu'on veux render Ourwork, ici quand le lien est http://localhost:3000/work */}
           <OurWork />
+        </Route>
+        <Route>
+          <MovieDetail path="/work/:id" />
         </Route>
         <Route path="/contact">
           <ContactUs />
