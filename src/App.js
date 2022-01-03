@@ -47,8 +47,8 @@ function App() {
       path indique quand est-ce qu'on veux render Ourwork, ici quand le lien est http://localhost:3000/work */}
             <OurWork />
           </Route>
-          <Route>
-            <MovieDetail path="/work/:id" />
+          <Route path="/work/:id">
+            <MovieDetail />
           </Route>
           <Route path="/contact">
             <ContactUs />

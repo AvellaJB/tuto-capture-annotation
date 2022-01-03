@@ -17,10 +17,17 @@ import {
   sliderContainer,
 } from "../animation";
 
+import { UseScroll } from "../components/useScroll";
+
+import ScrollTop from "../components/ScrollTop";
+
 // Attention dans le cadre de styled components si on veux ajouter Motion alors il faut modifier
 // le styled components.
 
 const OurWork = () => {
+  const [element, controls] = UseScroll();
+  const [element2, controls2] = UseScroll();
+
   return (
     <Work
       variants={pageAnimation}
@@ -29,6 +36,7 @@ const OurWork = () => {
       exit="exit"
       style={{ background: "#fff" }}
     >
+      <ScrollTop />
       <motion.div variants={sliderContainer}>
         <Frame1 variants={slider}></Frame1>
         <Frame2 variants={slider}></Frame2>
@@ -45,16 +53,21 @@ const OurWork = () => {
           </Hide>
         </Link>
       </Movie>
-      <Movie>
+      <Movie ref={element} variants={fade} animate={controls} initial="hidden">
         <h2>The Racer</h2>
-        <div className="line"></div>
+        <motion.div variants={lineAnim} className="line"></motion.div>
         <Link to="/work/the-racer">
           <img src={theracer} alt="the racer" />
         </Link>
       </Movie>
-      <Movie>
+      <Movie
+        ref={element2}
+        variants={fade}
+        animate={controls2}
+        initial="hidden"
+      >
         <h2>Good Times</h2>
-        <div className="line"></div>
+        <motion.div variants={lineAnim} className="line"></motion.div>
         <Link to="/work/good-times">
           <img src={goodtimes} alt="the good times" />
         </Link>
@@ -73,7 +86,7 @@ const Work = styled(motion.div)`
   }
 `;
 
-const Movie = styled.div`
+const Movie = styled(motion.div)`
   padding-bottom: 10rem;
   .line {
     height: 0.5rem;
