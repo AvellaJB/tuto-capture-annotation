@@ -1,11 +1,11 @@
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 // Styled component
 //Installation d'une extension pour pouvoir styliser le CSS en dessous comme du CSS normal
 //Sinon tout est en string jaune.
 //Avantage du styled components on peux écrire du javascript dedans pour les animation.
 
-export const About = styled.div`
+export const About = styled(motion.div)`
   min-height: 90vh;
   display: flex;
   align-items: center;

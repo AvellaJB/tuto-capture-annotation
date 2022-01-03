@@ -6,11 +6,21 @@ import teamwork from "../img/teamwork.svg";
 import home2 from "../img/home2.png";
 //Style
 import styled from "styled-components";
-import {About, Description, Image} from "../styles"
+import { About, Description, Image } from "../styles";
+import { scrollReveal } from "../animation";
+import { UseScroll } from "./useScroll";
 
 const ServicesSection = () => {
+  const [element, controls] = UseScroll();
+
   return (
-    <Services>
+    //Ajout dans services de l'animation de useScroll, il faut une ref element
+    <Services
+      variants={scrollReveal}
+      animate={controls}
+      initial="hidden"
+      ref={element}
+    >
       <Description>
         <h2>
           High <span>quality</span> services
@@ -53,42 +63,39 @@ const ServicesSection = () => {
   );
 };
 
-
-//Le fait d'ajouter About en paramètre permet de récupérer toutes les infos de styling du About sans avoir 
-//à les recopier 
+//Le fait d'ajouter About en paramètre permet de récupérer toutes les infos de styling du About sans avoir
+//à les recopier
 const Services = styled(About)`
-/* min-height : 90vh; 
+  /* min-height : 90vh; 
 display: flex;
 align-items: center;
 justify-content : space-between;
 padding: 5rem 10rem;
 color : white; */
-h2 {
-  padding-bottom: 5rem;
-}
-p{
-  width: 70%;
-  padding : 2rem 0rem 4rem 0rem;
-}
-`
+  h2 {
+    padding-bottom: 5rem;
+  }
+  p {
+    width: 70%;
+    padding: 2rem 0rem 4rem 0rem;
+  }
+`;
 const Cards = styled.div`
-display: flex;
-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const Card = styled.div`
-flex-basis : 20rem; 
-.icon{
-  display: flex;
-  align-items: center; 
-  h3{
-    margin-left: 1rem;
-    background : white;
-    color: black;
-    padding: 1rem; 
-
+  flex-basis: 20rem;
+  .icon {
+    display: flex;
+    align-items: center;
+    h3 {
+      margin-left: 1rem;
+      background: white;
+      color: black;
+      padding: 1rem;
+    }
   }
-}
-
 `;
 export default ServicesSection;
