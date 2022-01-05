@@ -7,7 +7,7 @@ export const UseScroll = () => {
   //Ici element permet de cibler l'éléments qu'on veux suivre, et cela permet de savoir
   //quand est-ce qu'il apparaît à l'écran, le threshold retient l'anim (tant qu'on vois pas 50% du DIV
   //il ne se passe rien.)
-  const [element, view] = useInView({ threshold: 0.5 });
+  const [element, view] = useInView({ threshold: 0.3 });
   if (view) {
     controls.start("show");
   } else {
