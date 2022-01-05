@@ -54,6 +54,14 @@ p{
     font-size: 1.4rem;
     line-height: 150%;
     }
+
+    html{
+    @media (max-width: 1700px){
+        font-size: 75%;
+    }
+    
+};
+
 `;
 
 export default GlobalStyle;
